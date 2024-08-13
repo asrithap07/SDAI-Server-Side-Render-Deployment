@@ -1,3 +1,10 @@
 .env
-.DS_Sstore
+.DS_Store
 db.sqlite3
+#Pipfile
+#Pipfile.lock
+#email stuff in progress
+get_refresh_token.py
+gmail_utils.py
+client_secret.json
+
