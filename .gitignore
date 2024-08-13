@@ -1,2 +1,3 @@
 .env
 .DS_Sstore
+db.sqlite3
