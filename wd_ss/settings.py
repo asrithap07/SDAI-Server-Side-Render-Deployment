@@ -36,8 +36,9 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://sdai-server-side-render-deployment.onrender.com']
+ALLOWED_HOSTS = ['sdai-server-side-render-deployment.onrender.com']
 
+CSRF_TRUSTED_ORIGINS = ['https://sdai-server-side-render-deployment.onrender.com']
 
 # Application definition
 
