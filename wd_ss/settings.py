@@ -34,9 +34,9 @@ if os.path.isfile(dotenv_file):
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['sdai-server-side-render-deployment.onrender.com']
+ALLOWED_HOSTS = ['sdai-server-side-render-deployment.onrender.com', 'localhost', '127.0.0.1']
 
 CSRF_TRUSTED_ORIGINS = ['https://sdai-server-side-render-deployment.onrender.com']
 
@@ -147,7 +147,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICROOT = os.path.join(BASE_DIR, 'staticfiles')
+#added underscore between static and root
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
     BASE_DIR / "static"
