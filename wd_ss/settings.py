@@ -161,18 +161,18 @@ load_dotenv()
 #SMTP Configuration
 
 #EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_BACKEND = 'gmail_utils.GmailOAuth2Backend'
-EMAIL_HOST = 'smtp.gmail.com'  # Replace with your email host
-EMAIL_PORT = 587  # This is for TLS. Use 465 for SSL.
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
-EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
-DEFAULT_FROM_EMAIL = os.environ['DEFAULT_FROM_EMAIL']
+#EMAIL_BACKEND = 'gmail_utils.GmailOAuth2Backend'
+#EMAIL_HOST = 'smtp.gmail.com'  # Replace with your email host
+#EMAIL_PORT = 587  # This is for TLS. Use 465 for SSL.
+#EMAIL_USE_TLS = True
+#EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+#EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+#DEFAULT_FROM_EMAIL = os.environ['DEFAULT_FROM_EMAIL']
 
 #OAuth2 settings
-GMAIL_CLIENT_ID = os.environ['GMAIL_CLIENT_ID']
-GMAIL_CLIENT_SECRET = os.environ['GMAIL_CLIENT_SECRET']
-GMAIL_REFRESH_TOKEN = os.environ['GMAIL_REFRESH_TOKEN']
+#GMAIL_CLIENT_ID = os.environ['GMAIL_CLIENT_ID']
+#GMAIL_CLIENT_SECRET = os.environ['GMAIL_CLIENT_SECRET']
+#GMAIL_REFRESH_TOKEN = os.environ['GMAIL_REFRESH_TOKEN']
 
 #Twilio configuration
 
