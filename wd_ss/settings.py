@@ -14,6 +14,8 @@ from pathlib import Path
 
 import os
 
+import dj_database_url
+
 import dotenv
 
 from dotenv import load_dotenv
@@ -93,18 +95,24 @@ WSGI_APPLICATION = 'wd_ss.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        #'ENGINE': 'django.db.backends.sqlite3',
-        'ENGINE': 'django.db.backends.postgresql',
-        #'NAME': BASE_DIR / 'db.sqlite3',
-        'NAME': os.environ['DB_NAME'],
-        'USER': os.environ['DB_USER'],
-        'PASSWORD': os.environ['DB_PASSWORD'],
-        'HOST': os.environ['DB_HOST'],
-        'PORT': '5432',
+
+if os.environ.get('DB_URL'):
+    DATABASES = {
+        'default': dj_database_url.config(conn_max_age=600)
     }
-}
+else: 
+    DATABASES = {
+        'default': {
+            #'ENGINE': 'django.db.backends.sqlite3',
+            'ENGINE': 'django.db.backends.postgresql',
+            #'NAME': BASE_DIR / 'db.sqlite3',
+            'NAME': os.environ['DB_NAME'],
+            'USER': os.environ['DB_USER'],
+            'PASSWORD': os.environ['DB_PASSWORD'],
+            'HOST': os.environ['DB_HOST'],
+            'PORT': '5432',
+        }
+    }
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': [
