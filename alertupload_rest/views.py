@@ -74,16 +74,17 @@ def send_sms(serializer):
 
         message = prepare_alert_message(serializer)
         #print(f"Message to be sent: {message}")
-        logger.info(f"SMS sent successfully. Response: {send_batch_response}")
-
+        logger.info(f"Message to be sent: {message}")
+        
         send_batch_response = sinch_client.sms.batches.send(
-            body=prepare_alert_message(serializer),
+            body=message,
             to=[serializer.data['alert_receiver']],
             from_=settings.SINCH_NUMBER,
             delivery_report="none"
         )
 
-        print(f"SMS sent successfully. Response: {send_batch_response}")
+        #print(f"SMS sent successfully. Response: {send_batch_response}")
+        logger.info(f"SMS sent successfully. Response: {send_batch_response}")
     except Exception as e:
         #print(f"An error occurred while sending SMS: {str(e)}")
         #print(f"Serializer data: {serializer.data}")
@@ -96,9 +97,9 @@ def prepare_alert_message(serializer):
     #url = 'hhtp://127.0.0.1:8000/alert' + uuid
 
     alert_id = serializer.data['id']  # Assuming the serializer includes the alert's ID
-    url = f'http://127.0.0.1:8000/alert/{alert_id}'
+    url = f'https://sdai-server-side-render-deployment.onrender.com/alert/{alert_id}'
 
-    return 'Weapon Detected! View alert at ' + url
+    return f'Weapon Detected! View alert at {url}'
 
 #def split(value, key):
     #return str(value).split(key)
