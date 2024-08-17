@@ -8,12 +8,15 @@ from django.http import JsonResponse
 from threading import Thread
 from django.core.mail import send_mail
 import re
+import logging
 
 from wd_ss import settings
 import requests
 import json
 
 from sinch import SinchClient
+
+logger = logging.getLogger(__name__)
 
 def start_new_thread(function):
     def decorator(*args, **kwargs):
@@ -61,7 +64,8 @@ def send_sms(serializer):
 @start_new_thread
 def send_sms(serializer):
     try:
-        print(f"Attempting to send SMS to {serializer.data['alert_receiver']}")
+        #print(f"Attempting to send SMS to {serializer.data['alert_receiver']}")
+        logger.info(f"Attempting to send SMS to {serializer.data['alert_receiver']}")
         sinch_client = SinchClient(
             key_id=settings.SINCH_KEY_ID,
             key_secret=settings.SINCH_KEY_SECRET,
@@ -69,7 +73,8 @@ def send_sms(serializer):
         )
 
         message = prepare_alert_message(serializer)
-        print(f"Message to be sent: {message}")
+        #print(f"Message to be sent: {message}")
+        logger.info(f"SMS sent successfully. Response: {send_batch_response}")
 
         send_batch_response = sinch_client.sms.batches.send(
             body=prepare_alert_message(serializer),
@@ -80,8 +85,10 @@ def send_sms(serializer):
 
         print(f"SMS sent successfully. Response: {send_batch_response}")
     except Exception as e:
-        print(f"An error occurred while sending SMS: {str(e)}")
-        print(f"Serializer data: {serializer.data}")
+        #print(f"An error occurred while sending SMS: {str(e)}")
+        #print(f"Serializer data: {serializer.data}")
+        logger.error(f"An error occurred while sending SMS: {str(e)}")
+        logger.error(f"Serializer data: {serializer.data}")
                                       
 def prepare_alert_message(serializer):
     #image_data = split(serializer.data['image'], ".")
