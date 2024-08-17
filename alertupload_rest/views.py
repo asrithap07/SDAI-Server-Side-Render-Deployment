@@ -89,7 +89,7 @@ def send_sms(serializer):
     except Exception as e:
         #print(f"An error occurred while sending SMS: {str(e)}")
         #print(f"Serializer data: {serializer.data}")
-        logger.error(f"An error occurred while sending SMS: {str(e)}")
+        logger.error(f"An error occurred while sending SMS: {str(e)}", exc_info=True)
         logger.error(f"Serializer data: {serializer.data}")
                                       
 def prepare_alert_message(serializer):
