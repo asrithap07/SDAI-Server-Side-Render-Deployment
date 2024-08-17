@@ -96,12 +96,13 @@ WSGI_APPLICATION = 'wd_ss.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 
-if os.environ.get('DB_URL'):
-    DATABASES = {
-        'default': dj_database_url.config(conn_max_age=600)
+DATABASE_URL = os.environ.get('DATABASE_URL'):
+DATABASES = {
+        'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
     }
-else: 
-    DATABASES = {
+ 
+'''
+DATABASES = {
         'default': {
             #'ENGINE': 'django.db.backends.sqlite3',
             'ENGINE': 'django.db.backends.postgresql',
@@ -113,6 +114,7 @@ else:
             'PORT': '5432',
         }
     }
+'''
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': [
