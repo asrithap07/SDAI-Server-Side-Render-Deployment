@@ -63,6 +63,7 @@ def send_sms(serializer):
 
 @start_new_thread
 def send_sms(serializer):
+    logger.info("send_sms function called")
     try:
         #print(f"Attempting to send SMS to {serializer.data['alert_receiver']}")
         logger.info(f"Attempting to send SMS to {serializer.data['alert_receiver']}")
