@@ -14,7 +14,8 @@ from wd_ss import settings
 import requests
 import json
 
-from sinch import SinchClient
+#from sinch import SinchClient
+from textmagic.rest import TextmagicRestClient
 
 logger = logging.getLogger(__name__)
 
@@ -61,6 +62,8 @@ def send_sms(serializer):
                                       to=serializer.data['alert_receiver'])
 '''
 
+#SINCH FUNCTION
+'''
 @start_new_thread
 def send_sms(serializer):
     logger.info("send_sms function called")
@@ -91,7 +94,33 @@ def send_sms(serializer):
         #print(f"Serializer data: {serializer.data}")
         logger.error(f"An error occurred while sending SMS: {str(e)}", exc_info=True)
         logger.error(f"Serializer data: {serializer.data}")
-                                      
+'''
+
+#TEXTMAGIC FUNCTION
+@start_new_thread
+def send_sms(serializer):
+    logger.info("send_sms function called")
+    try:
+        logger.info(f"Attempting to send SMS to {serializer.data['alert_receiver']}")
+        
+        # Initialize TextMagic client
+        client = TextmagicRestClient(settings.TEXTMAGIC_USERNAME, settings.TEXTMAGIC_API_KEY)
+
+        message = prepare_alert_message(serializer)
+        logger.info(f"Message to be sent: {message}")
+        
+        # Send SMS using TextMagic without specifying a sender ID
+        response = client.messages.create(
+            phones=serializer.data['alert_receiver'],
+            text=message
+        )
+
+        logger.info(f"SMS sent successfully. Response: {response}")
+    except Exception as e:
+        logger.error(f"An error occurred while sending SMS: {str(e)}", exc_info=True)
+        logger.error(f"Serializer data: {serializer.data}")
+
+                                              
 def prepare_alert_message(serializer):
     #image_data = split(serializer.data['image'], ".")
     #uuid = split(uuid_with_slashes[3], "/")

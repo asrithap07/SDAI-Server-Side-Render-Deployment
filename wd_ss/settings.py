@@ -217,6 +217,8 @@ SINCH_KEY_SECRET = os.environ['SINCH_KEY_SECRET']
 SINCH_KEY_ID = os.environ['SINCH_KEY_ID']
 SINCH_NUMBER = os.environ['SINCH_NUMBER']
 
+
+
 #Amazon s3 configuration
 AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
