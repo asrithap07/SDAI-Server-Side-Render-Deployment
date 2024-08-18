@@ -217,7 +217,9 @@ SINCH_KEY_SECRET = os.environ['SINCH_KEY_SECRET']
 SINCH_KEY_ID = os.environ['SINCH_KEY_ID']
 SINCH_NUMBER = os.environ['SINCH_NUMBER']
 
-
+#Textmagic configuration
+TEXTMAGIC_USERNAME = os.environ['TEXTMAGIC_USERNAME']
+TEXTMAGIC_API_KEY = os.environ['TEXTMAGIC_API_KEY']
 
 #Amazon s3 configuration
 AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
